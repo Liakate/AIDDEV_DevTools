@@ -1,0 +1,13 @@
+## Interface: 30300
+## Title: AIDDEV DevTools
+## Notes: Developer diagnostics & validators for AIDDEV
+## Author: CtrlAlt, Liakate Bronzebeard
+## Version: 0.14.0
+
+Core/Bootstrap.lua
+Core/Lifecycle.lua
+Core/Registry.lua
+
+Validators/DT001_Namespace.lua
+Validators/DT002_PlayerEnteringWorld.lua
+Validators/DT003_SlashInXML.lua

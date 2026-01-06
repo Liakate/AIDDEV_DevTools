@@ -1,0 +1,41 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Frame name="AIDDEVDevToolsFrame" parent="UIParent" hidden="true" movable="true" enableMouse="true">
+        <Size><AbsDimension x="700" y="400"/></Size>
+        <Anchors><Anchor point="CENTER"/></Anchors>
+
+        <Backdrop bgFile="Interface/DialogFrame/UI-DialogBox-Background"
+                  edgeFile="Interface/DialogFrame/UI-DialogBox-Border"
+                  tile="true">
+            <EdgeSize><AbsValue val="32"/></EdgeSize>
+            <TileSize><AbsValue val="32"/></TileSize>
+        </Backdrop>
+
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parentTitle" inherits="GameFontNormalLarge">
+                    <Anchors><Anchor point="TOP" y="-10"/></Anchors>
+                    <Text>AIDDEV DevTools Report</Text>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <ScrollFrame name="$parentScroll" inherits="UIPanelScrollFrameTemplate">
+                <Size><AbsDimension x="660" y="320"/></Size>
+                <Anchors><Anchor point="TOPLEFT" x="20" y="-40"/></Anchors>
+            </ScrollFrame>
+        </Frames>
+
+        <Scripts>
+            <OnLoad>AIDDEV_DevTools_OnLoad(self)</OnLoad>
+            <OnMouseDown>
+                if button == "LeftButton" then
+                    self:StartMoving()
+                end
+            </OnMouseDown>
+            <OnMouseUp>
+                self:StopMovingOrSizing()
+            </OnMouseUp>
+        </Scripts>
+    </Frame>
+</Ui>
