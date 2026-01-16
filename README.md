@@ -1,89 +1,85 @@
-# AIDDEV_DevTools  
-PreFlight Validation Suite for AIDDEV
+# 🛠️ AIDDEV_DevTools
+### PreFlight Validation Suite for AIDDEV
 
-AIDDEV_DevTools is the **gatekeeper** between AIDDEV_Companion and AIDDEV.  
-It ensures that only **valid, deterministic, safe projects** are loaded into AIDDEV.
+[![License: MIT](https://img.shields.io)](https://opensource.org)
+[![Status: Gatekeeper](https://img.shields.io)](https://github.com)
 
-DevTools enforces a strict rule taxonomy:
-
-- **fatal** → project rejected  
-- **error** → project rejected  
-- **warning** → project allowed  
-- **info** → informational  
-
-## Role in the Toolchain
-
-AIDDEV_Companion → AIDDEV_DevTools → AIDDEV
-
-### AIDDEV_Companion  
-Provides project files and environment metadata.
-
-### AIDDEV_DevTools  
-Validates the project.
-
-### AIDDEV  
-Consumes the validated project.
-
-## Features
-
-### ✔ Validator Framework
-DevTools includes a modular validator system:
-
-- SyntaxGuard  
-- EncodingGuard  
-- TOCGuard  
-- (More can be added easily)
-
-Each validator reports:
-- severity (`fatal`, `error`, `warning`, `info`)  
-- rule ID  
-- message  
-- optional metadata  
-
-### ✔ DevTools Report UI
-Shows:
-- Fatal count  
-- Error count  
-- Warning count  
-- All rule violations  
-- Colorcoded severity  
-
-### ✔ Slash Command
-
-/aiddevtools
-
-Runs all validators and opens the report window.
-
-### ✔ Integration with AIDDEV
-AIDDEV includes a **Run DevTools** button that triggers validation before loading a project.
+**AIDDEV_DevTools** is the essential bridge between [AIDDEV_Companion](https://github.com) and the core [AIDDEV](https://github.com) engine. It functions as an in-game CI pipeline, ensuring only **valid, deterministic, and safe projects** are permitted to load.
 
 ---
 
-## How DevTools Works
+## 🏗️ Role in the Toolchain
 
-1. Pulls project from AIDDEV_Companion  
-2. Runs all validators  
-3. Builds a structured report  
-4. If **fatal** or **error** rules exist:
-   - Project is rejected  
-   - AIDDEV is not updated  
-5. If only warnings or none:
-   - Project is forwarded to AIDDEV via `AIDDEV_Loader:SetCurrentProject()`  
+DevTools acts as the central validation authority in the three-tier architecture:
 
-## When to Use DevTools
+1.  **AIDDEV_Companion:** Provides raw project files and environment metadata.
+2.  **AIDDEV_DevTools:** Validates the project against strict safety and logic rules.
+3.  **AIDDEV:** Consumes the successfully validated project.
 
-Use DevTools whenever:
+---
 
-- You import a new project  
-- You update files in Companion  
-- You want to ensure your addon is valid before analysis  
-- You want to enforce deterministic workflows  
-- You want to catch encoding/line‑ending issues early  
-- You want to block invalid projects from reaching AIDDEV  
+## 🚦 Rule Taxonomy
 
-DevTools is the **CI pipeline** inside the game.
+DevTools enforces a strict hierarchy of compliance to prevent corruption or crashes:
 
-## Requirements
+| Severity | Action | Description |
+| :--- | :--- | :--- |
+| 💀 **fatal** | **REJECTED** | Critical failure; system cannot proceed. |
+| ❌ **error** | **REJECTED** | Logic or syntax violation that prevents valid analysis. |
+| ⚠️ **warning** | **ALLOWED** | Potential issue detected, but project remains usable. |
+| ℹ️ **info** | **ALLOWED** | General metadata or informational logs. |
 
-- AIDDEV_Companion  
-- AIDDEV  
+---
+
+## ✨ Features
+
+### 🛡️ Validator Framework
+A modular system designed for extensibility. Current guards include:
+*   **SyntaxGuard:** Ensures script integrity.
+*   **EncodingGuard:** Catches illegal characters and line-ending inconsistencies.
+*   **TOCGuard:** Validates manifest and metadata files.
+*   *(Modular design allows for easy addition of custom validators.)*
+
+### 📊 DevTools Report UI
+An intuitive dashboard providing immediate feedback:
+*   Real-time counts for Fatals, Errors, and Warnings.
+*   Detailed list of all rule violations with Rule IDs.
+*   Color-coded severity indicators for rapid debugging.
+
+### ⌨️ Slash Command
+Run all validators and invoke the UI instantly with:
+```bash
+/aiddevtools
+```
+
+---
+
+## ⚙️ How It Works
+
+1.  **Ingestion:** Pulls project data from `AIDDEV_Companion`.
+2.  **Analysis:** Executes the modular validator suite.
+3.  **Reporting:** Compiles a structured validation report.
+4.  **Enforcement:**
+    *   If **fatal** or **error** flags exist: The project is rejected and `AIDDEV` is not updated.
+    *   If clean (or warnings only): Project is forwarded to the main engine via `AIDDEV_Loader:SetCurrentProject()`.
+
+---
+
+## 🚀 When to Use DevTools
+
+Deploy DevTools whenever you need to:
+*   Import a new project or update files in the Companion.
+*   Ensure your addon is valid before complex analysis.
+*   Enforce **deterministic workflows** across your development team.
+*   Catch encoding issues before they reach the production environment.
+*   **Block invalid code** from ever reaching the AIDDEV core.
+
+---
+
+## 📋 Requirements
+
+*   [AIDDEV_Companion](https://github.com)
+*   [AIDDEV](https://github.com)
+
+---
+*DevTools: The CI pipeline inside the game.*
