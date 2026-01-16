@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 # 🛠️ AIDDEV_DevTools
 ### PreFlight Validation Suite for AIDDEV
+=======
+# WORK IN PROGRESS!!!
+
+# AIDDEV_DevTools  
+PreFlight Validation Suite for AIDDEV
+>>>>>>> 6aba8a4fa734924d299c75c4ffcb867a3ea680b0
 
 [![License: MIT](https://img.shields.io)](https://opensource.org)
 [![Status: Gatekeeper](https://img.shields.io)](https://github.com)
